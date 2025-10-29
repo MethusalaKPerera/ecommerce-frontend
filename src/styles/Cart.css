@@ -120,3 +120,23 @@
 .checkout-btn:hover {
   background: #2c5282;
 }
+
+.cart-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+}
+
+.clear-btn {
+  padding: 15px 30px;
+  background: #e53e3e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background: #c53030;
+}

@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/products/ProductCard';
 import { mockProducts } from '../data/mockProducts';
-import { Product } from '../types/product';
+import { Product, CartItem } from '../types/product';
 import '../styles/Products.css';
 
 const Products: React.FC = () => {
   const [products] = useState<Product[]>(mockProducts);
-  const [cart, setCart] = useState<Product[]>([]);
 
   const handleAddToCart = (product: Product) => {
-    setCart([...cart, product]);
+    // Get existing cart from localStorage
+    const existingCart = localStorage.getItem('cart');
+    const cart: CartItem[] = existingCart ? JSON.parse(existingCart) : [];
+
+    // Check if product already in cart
+    const existingItemIndex = cart.findIndex(item => item.id === product.id);
+
+    if (existingItemIndex > -1) {
+      // Increase quantity
+      cart[existingItemIndex].quantity += 1;
+    } else {
+      // Add new item
+      cart.push({ ...product, quantity: 1 });
+    }
+
+    // Save to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
     alert(`${product.name} added to cart!`);
   };
 

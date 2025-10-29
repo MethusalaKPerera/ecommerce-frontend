@@ -1,24 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartItem } from '../types/product';
 import '../styles/Cart.css';
 
 const Cart: React.FC = () => {
-  // This will be replaced with Context API in Day 3
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+  useEffect(() => {
+    // Load cart from localStorage
+    const loadCart = () => {
+      const existingCart = localStorage.getItem('cart');
+      if (existingCart) {
+        setCartItems(JSON.parse(existingCart));
+      }
+    };
+
+    loadCart();
+    
+    // Optional: Reload when window focuses (if user adds items in another tab)
+    window.addEventListener('focus', loadCart);
+    return () => window.removeEventListener('focus', loadCart);
+  }, []);
+
+  const saveCart = (items: CartItem[]) => {
+    localStorage.setItem('cart', JSON.stringify(items));
+    setCartItems(items);
+  };
+
   const handleRemoveItem = (id: number) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    const updatedCart = cartItems.filter(item => item.id !== id);
+    saveCart(updatedCart);
   };
 
   const handleUpdateQuantity = (id: number, quantity: number) => {
     if (quantity < 1) return;
-    setCartItems(cartItems.map(item =>
+    const updatedCart = cartItems.map(item =>
       item.id === id ? { ...item, quantity } : item
-    ));
+    );
+    saveCart(updatedCart);
   };
 
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+  };
+
+  const handleClearCart = () => {
+    localStorage.removeItem('cart');
+    setCartItems([]);
   };
 
   if (cartItems.length === 0) {
@@ -67,7 +94,12 @@ const Cart: React.FC = () => {
       </div>
       <div className="cart-summary">
         <h2>Total: ${getTotalPrice().toFixed(2)}</h2>
-        <button className="checkout-btn">Proceed to Checkout</button>
+        <div className="cart-actions">
+          <button className="clear-btn" onClick={handleClearCart}>
+            Clear Cart
+          </button>
+          <button className="checkout-btn">Proceed to Checkout</button>
+        </div>
       </div>
     </div>
   );
