@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import ProductCard from './components/products/ProductCard';
+import { Product } from './types/product';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const sampleProduct: Product = {
+    id: 1,
+    name: 'Sample Product',
+    price: 29.99,
+    description: 'This is a sample product for testing',
+    image: 'https://via.placeholder.com/300',
+    category: 'Electronics',
+    stock: 10
+  };
+
+  const handleAddToCart = (product: Product) => {
+    console.log('Added to cart:', product);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <div style={{ maxWidth: '300px', margin: '50px auto' }}>
+        <h2>Product Card Demo</h2>
+        <ProductCard product={sampleProduct} onAddToCart={handleAddToCart} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
