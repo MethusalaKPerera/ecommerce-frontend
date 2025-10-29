@@ -1,29 +1,36 @@
-import ProductCard from './components/products/ProductCard';
-import { Product } from './types/product';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Products from './pages/Products';
+import Cart from './pages/Cart';
+import Admin from './pages/Admin';
 import './App.css';
 
 function App() {
-  const sampleProduct: Product = {
-    id: 1,
-    name: 'Sample Product',
-    price: 29.99,
-    description: 'This is a sample product for testing',
-    image: 'https://via.placeholder.com/300',
-    category: 'Electronics',
-    stock: 10
-  };
-
-  const handleAddToCart = (product: Product) => {
-    console.log('Added to cart:', product);
-  };
-
   return (
-    <div className="App">
-      <div style={{ maxWidth: '300px', margin: '50px auto' }}>
-        <h2>Product Card Demo</h2>
-        <ProductCard product={sampleProduct} onAddToCart={handleAddToCart} />
+    <Router>
+      <div className="App">
+        <nav className="navbar">
+          <div className="nav-container">
+            <Link to="/" className="nav-logo">
+              🛍️ E-Commerce
+            </Link>
+            <ul className="nav-menu">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/products">Products</Link></li>
+              <li><Link to="/cart">Cart</Link></li>
+              <li><Link to="/admin">Admin</Link></li>
+            </ul>
+          </div>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
