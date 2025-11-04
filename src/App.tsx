@@ -12,8 +12,7 @@ import Cart from './pages/Cart';
 import Admin from './pages/Admin';
 import './App.css';
 
-// Navbar Component (using contexts)
-// In App.tsx - Update your Navbar component
+// Navbar Component
 const Navbar = () => {
   const { getCartCount } = useCart();
   const { user, logout, login } = useUser();
@@ -52,10 +51,15 @@ const Navbar = () => {
             <li><Link to="/admin">Admin</Link></li>
           )}
           
-          {/* Theme Toggle */}
+          {/* Theme Toggle - Fixed to show correct icon */}
           <li>
-            <button onClick={toggleTheme} className="theme-toggle-btn" title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
-              {theme === 'light' ? '🌙' : '☀️'}
+            <button 
+              onClick={toggleTheme} 
+              className="theme-toggle-btn" 
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? '☀️' : '🌙'}
             </button>
           </li>
           
