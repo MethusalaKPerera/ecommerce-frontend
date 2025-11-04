@@ -1,0 +1,54 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1;
+}
+
+.badge-pill {
+  border-radius: 50px;
+}
+
+.badge-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.badge-secondary {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.badge-success {
+  background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+  color: white;
+}
+
+.badge-danger {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+}
+
+.badge-warning {
+  background: linear-gradient(135deg, #ffd93d 0%, #f6c23e 100%);
+  color: #333;
+}
+
+.badge-info {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.badge-small {
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.badge-large {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}

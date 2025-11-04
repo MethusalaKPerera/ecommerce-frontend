@@ -1,24 +1,224 @@
 .products-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 80px 2rem;
+  min-height: calc(100vh - 100px);
+  position: relative;
+  z-index: 1;
+}
+
+.products-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(30px);
+  padding: 4rem 3rem;
+  border-radius: 32px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
 }
 
 .products-container h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 4rem;
+  margin-bottom: 20px;
+  color: white;
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  font-weight: 900;
+  letter-spacing: -2px;
 }
 
 .products-subtitle {
-  text-align: center;
-  color: #666;
-  margin-bottom: 40px;
+  color: #ffd93d;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 35px;
+}
+
+.alert-container {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Filters Section */
+.products-filters {
+  margin-bottom: 3rem;
+}
+
+.filters-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.filter-group .input-wrapper {
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Dark theme for inputs in products filters */
+.filter-group .input-container {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.filter-group .custom-input {
+  color: white !important;
+}
+
+.filter-group .custom-input::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.filter-group .input-icon {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.filter-select {
+  padding: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #667eea;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.filter-select:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.price-range {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.price-separator {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.results-info {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.results-info strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* No Products */
+.no-products {
+  margin: 3rem 0;
+}
+
+.no-products-content {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.no-products-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.no-products-content h3 {
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.no-products-content p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .filters-content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-container h1 {
+    font-size: 3rem;
+  }
+  
+  .products-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-content {
+    grid-template-columns: 1fr;
+  }
+
+  .price-range {
+    grid-template-columns: 1fr;
+  }
+
+  .price-separator {
+    display: none;
+  }
 }

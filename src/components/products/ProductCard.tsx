@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Product } from '../../types/product';
+import React, { useState, memo } from 'react';
+import type { Product } from '../../types/product';
 import '../../styles/ProductCard.css';
 
 interface ProductCardProps {
@@ -7,7 +7,7 @@ interface ProductCardProps {
   onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+const ProductCard: React.FC<ProductCardProps> = memo(({ product, onAddToCart }) => {
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
@@ -40,6 +40,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       </div>
     </div>
   );
-};
+});
+
+ProductCard.displayName = 'ProductCard';
 
 export default ProductCard;

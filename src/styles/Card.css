@@ -1,0 +1,41 @@
+.custom-card {
+  padding: 2rem;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.card-hover {
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+}
+
+.card-default {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-gradient {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card-elevated {
+  background: white;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.card-hover:hover {
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+}
