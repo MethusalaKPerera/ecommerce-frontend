@@ -101,12 +101,12 @@ export const mockProducts: Product[] = [
     stock: 14
   },
   {
-    id: 12,
-    name: 'Travel Adapter',
-    price: 24.99,
-    description: 'Universal travel adapter with 4 USB ports, works in 150+ countries',
-    image: 'https://images.unsplash.com/photo-1620221358191-3e8c4a5a1e8e?w=500&q=80',
-    category: 'accessories',
-    stock: 40
-  }
+  id: 12,
+  name: 'Travel Adapter',
+  price: 24.99,
+  description: 'Universal travel adapter with 4 USB ports, works in 150+ countries',
+  image: 'https://images.unsplash.com/photo-1620221358191-3e8c4a5a1e8e?w=500&q=80',
+  category: 'accessories',
+  stock: 40
+}
 ];

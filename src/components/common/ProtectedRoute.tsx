@@ -10,15 +10,18 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children, requireAdmin = false }: ProtectedRouteProps) => {
   const { isAuthenticated, isAdmin } = useUser();
 
-  // If route requires admin and user is not admin
-  if (requireAdmin && !isAdmin()) {
-    return <Navigate to="/" replace />;
-  }
-   // If route requires authentication and user is not authenticated
-  if (requireAdmin && !isAuthenticated()) {
+  // Check if user is authenticated first
+  if (!isAuthenticated()) {
+    // Redirect to home if not authenticated
     return <Navigate to="/" replace />;
   }
 
+  // If route requires admin and user is not admin, redirect to home
+  if (requireAdmin && !isAdmin()) {
+    return <Navigate to="/" replace />;
+  }
+
+  // User is authenticated and has proper role
   return <>{children}</>;
 };
 
